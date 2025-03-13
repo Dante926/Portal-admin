@@ -23,10 +23,16 @@ export default [
     ],
   },
   {
-    path: '/welcome',
-    name: 'welcome',
+    path: '/index',
+    name: 'index',
     icon: 'smile',
-    component: './Welcome',
+    component: './index',
+  },
+  {
+    path: '/account',
+    name: '个人中心',
+    icon: 'user',
+    component: './account',
   },
   {
     path: '/admin',
@@ -53,7 +59,7 @@ export default [
   },
   {
     path: '/',
-    redirect: '/welcome',
+    redirect: '/index',
   },
   {
     path: '*',

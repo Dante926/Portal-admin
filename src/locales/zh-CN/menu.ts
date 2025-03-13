@@ -1,4 +1,6 @@
 export default {
+  'menu.index': '首页',
+
   'menu.welcome': '欢迎',
   'menu.more-blocks': '更多区块',
   'menu.home': '首页',
