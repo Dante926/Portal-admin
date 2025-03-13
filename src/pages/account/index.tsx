@@ -49,6 +49,10 @@ const Account = () => {
     <>
       <Card>
         <div className={styles.baseView}>
+          <div className={styles.right}>
+            <AvatarView avatar={getAvatarURL()} />
+            <Divider dashed />
+          </div>
           <div className={styles.left}>
             <ProForm
               layout="vertical"
@@ -145,10 +149,6 @@ const Account = () => {
                 <Input className={styles.phone_number} />
               </ProFormFieldSet>
             </ProForm>
-          </div>
-          <div className={styles.right}>
-            <AvatarView avatar={getAvatarURL()} />
-            <Divider dashed />
           </div>
         </div>
       </Card>
