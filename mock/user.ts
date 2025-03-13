@@ -44,13 +44,13 @@ export default {
     res.send({
       success: true,
       data: {
-        name: 'Serati Ma',
+        name: 'Admin942',
         avatar: 'https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png',
         userid: '00000001',
-        email: 'antdesign@alipay.com',
+        email: 'm19163629494@163.com',
         signature: '海纳百川，有容乃大',
-        title: '交互专家',
-        group: '蚂蚁金服－某某某事业群－某某平台部－某某技术部－UED',
+        title: '百院软件高手',
+        group: '百色学院－某某某实验室－某某学生－某某技术部－高手',
         tags: [
           {
             key: '0',
@@ -83,11 +83,11 @@ export default {
         access: getAccess(),
         geographic: {
           province: {
-            label: '浙江省',
+            label: '广西壮族自治区',
             key: '330000',
           },
           city: {
-            label: '杭州市',
+            label: '百色市',
             key: '330100',
           },
         },

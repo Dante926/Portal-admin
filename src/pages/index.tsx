@@ -2,7 +2,7 @@ import { ClusterOutlined, ContactsOutlined, HomeOutlined } from '@ant-design/ico
 import { useModel } from '@umijs/max';
 import { Card, Divider } from 'antd';
 import { createStyles } from 'antd-style';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 /**
  * 每个单独的卡片，为了复用样式抽成了组件
@@ -129,11 +129,11 @@ const Welcome: React.FC = () => {
   const currentUser = initialState?.currentUser;
   // const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    if (initialState) {
-      setLoading(false);
-    }
-  }, [initialState]);
+  // useEffect(() => {
+  //   if (initialState) {
+  //     setLoading(false);
+  //   }
+  // }, [initialState]);
 
   //  渲染用户信息
   const renderUserInfo = ({ title, group, geographic }: Partial<CurrentUser>) => {
