@@ -1,6 +1,16 @@
-import { ClusterOutlined, ContactsOutlined, HomeOutlined } from '@ant-design/icons';
-import { useModel } from '@umijs/max';
-import { Card, Divider } from 'antd';
+import Analysis from '@/components/Analysis';
+import { fakeChartData } from '@/components/Analysis/service';
+import CarouselPage from '@/components/Carousel';
+import {
+  AppstoreAddOutlined,
+  BarChartOutlined,
+  ClusterOutlined,
+  ContactsOutlined,
+  EllipsisOutlined,
+  HomeOutlined,
+} from '@ant-design/icons';
+import { useModel, useRequest } from '@umijs/max';
+import { Card, Divider, Dropdown } from 'antd';
 import { createStyles } from 'antd-style';
 import React from 'react';
 
@@ -100,6 +110,14 @@ const useStyles = createStyles(({ token }) => {
       '.ant-tag': { marginBottom: '8px' },
     },
     team: {
+      marginLeft: '24px',
+      marginBottom: '24px',
+      div: {
+        fontSize: '18px',
+        marginBottom: '4px',
+      },
+      // maxWidth: '740px',
+      // margin: '0 auto',
       '.ant-avatar': { marginRight: '12px' },
       a: {
         display: 'block',
@@ -118,23 +136,48 @@ const useStyles = createStyles(({ token }) => {
     tabsCard: {
       '.ant-card-head': { padding: '0 16px' },
     },
+    iconGroup: {
+      'span.anticon': {
+        marginLeft: '16px',
+        color: token.colorTextSecondary,
+        cursor: 'pointer',
+        transition: 'color 0.32s',
+        '&:hover': {
+          color: token.colorText,
+        },
+      },
+    },
   };
 });
 
-const Welcome: React.FC = () => {
-  // const { token } = theme.useToken();
+const Index: React.FC = () => {
   const { initialState } = useModel('@@initialState');
   const { styles } = useStyles();
 
-  const currentUser = initialState?.currentUser;
-  // const [loading, setLoading] = useState(true);
+  const currentUser: CurrentUser = initialState?.currentUser;
+  const { loading, data } = useRequest(fakeChartData);
 
-  // useEffect(() => {
-  //   if (initialState) {
-  //     setLoading(false);
-  //   }
-  // }, [initialState]);
-
+  const dropdownGroup = (
+    <span className={styles.iconGroup}>
+      <Dropdown
+        menu={{
+          items: [
+            {
+              key: '1',
+              label: '操作一',
+            },
+            {
+              key: '2',
+              label: '操作二',
+            },
+          ],
+        }}
+        placement="bottomRight"
+      >
+        <EllipsisOutlined />
+      </Dropdown>
+    </span>
+  );
   //  渲染用户信息
   const renderUserInfo = ({ title, group, geographic }: Partial<CurrentUser>) => {
     return (
@@ -186,24 +229,42 @@ const Welcome: React.FC = () => {
 
   return (
     <>
-      <Card
-        bordered={false}
-        style={{
-          marginBottom: 24,
-        }}
-        // loading={loading}
-      >
-        <div className={styles.avatarHolder}>
-          <img alt="" src={currentUser.avatar} />
-          <div className={styles.name}>{currentUser.name}</div>
-          <div>{currentUser?.signature}</div>
-        </div>
-        {renderUserInfo(currentUser)}
-        <Divider dashed />
-        <div className={styles.team}></div>
-      </Card>
+      {!!currentUser && (
+        <Card
+          style={{
+            marginBottom: 24,
+          }}
+        >
+          <div className={styles.avatarHolder}>
+            <img alt="" src={currentUser.avatar} />
+            <div className={styles.name}>{currentUser.name}</div>
+            <div>{currentUser?.signature}</div>
+          </div>
+          {renderUserInfo(currentUser)}
+          <Divider dashed />
+          {/* 服务产品 */}
+          <div className={styles.team}>
+            <div>
+              <AppstoreAddOutlined /> 服务产品
+            </div>
+            <CarouselPage dotPosition="right" />
+          </div>
+          <Divider dashed />
+          <div className={styles.team}>
+            <div>
+              <BarChartOutlined /> 数据分析
+            </div>
+            <Analysis
+              loading={loading}
+              visitData2={data?.visitData2 || []}
+              searchData={data?.searchData || []}
+              dropdownGroup={dropdownGroup}
+            />
+          </div>
+        </Card>
+      )}
     </>
   );
 };
 
-export default Welcome;
+export default Index;

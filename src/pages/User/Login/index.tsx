@@ -51,18 +51,6 @@ const useStyles = createStyles(({ token }) => {
   };
 });
 
-// const ActionIcons = () => {
-//   const { styles } = useStyles();
-
-//   return (
-//     <>
-//       <AlipayCircleOutlined key="AlipayCircleOutlined" className={styles.action} />
-//       <TaobaoCircleOutlined key="TaobaoCircleOutlined" className={styles.action} />
-//       <WeiboCircleOutlined key="WeiboCircleOutlined" className={styles.action} />
-//     </>
-//   );
-// };
-
 const Lang = () => {
   const { styles } = useStyles();
 
