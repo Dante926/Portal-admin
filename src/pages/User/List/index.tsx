@@ -1,6 +1,11 @@
 import { EditOutlined, EyeOutlined } from '@ant-design/icons';
 import type { ProColumns } from '@ant-design/pro-components';
-import { LightFilter, ProFormDatePicker, ProTable } from '@ant-design/pro-components';
+import {
+  LightFilter,
+  PageContainer,
+  ProFormDatePicker,
+  ProTable,
+} from '@ant-design/pro-components';
 import { Link } from '@umijs/max';
 import { Button } from 'antd';
 
@@ -70,40 +75,44 @@ const columns: ProColumns<TableListItem>[] = [
 
 export default () => {
   return (
-    <ProTable<TableListItem>
-      columns={columns}
-      request={(params, sorter, filter) => {
-        console.log(params, sorter, filter);
-        return Promise.resolve({
-          data: tableListDataSource,
-          success: true,
-        });
-      }}
-      toolbar={{
-        search: {
-          onSearch: (value: string) => {
-            console.log(value);
-          },
-        },
-        filter: (
-          <LightFilter>
-            <ProFormDatePicker name="startdate" label="创建日期" />
-          </LightFilter>
-        ),
-        actions: [
-          <Button
-            key="primary"
-            type="primary"
-            onClick={(e) => {
-              console.debug(e);
-            }}
-          >
-            新增
-          </Button>,
-        ],
-      }}
-      rowKey="key"
-      search={false}
-    />
+    <>
+      <PageContainer>
+        <ProTable<TableListItem>
+          columns={columns}
+          request={(params, sorter, filter) => {
+            console.log(params, sorter, filter);
+            return Promise.resolve({
+              data: tableListDataSource,
+              success: true,
+            });
+          }}
+          toolbar={{
+            search: {
+              onSearch: (value: string) => {
+                console.log(value);
+              },
+            },
+            filter: (
+              <LightFilter>
+                <ProFormDatePicker name="startdate" label="创建日期" />
+              </LightFilter>
+            ),
+            actions: [
+              <Button
+                key="primary"
+                type="primary"
+                onClick={(e) => {
+                  console.debug(e);
+                }}
+              >
+                新增
+              </Button>,
+            ],
+          }}
+          rowKey="key"
+          search={false}
+        />
+      </PageContainer>
+    </>
   );
 };

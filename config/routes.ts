@@ -30,6 +30,7 @@ export default [
     icon: 'user',
     component: './account',
   },
+  // 用户管理
   {
     path: '/user',
     icon: 'SolutionOutlined',
@@ -66,6 +67,22 @@ export default [
         path: '/user/role',
         name: '用户权限',
         component: './User/Role',
+      },
+    ],
+  },
+  {
+    path: '/article',
+    icon: 'ReadOutlined',
+    name: '文章管理',
+    routes: [
+      {
+        path: '/article',
+        redirect: '/article/list',
+      },
+      {
+        path: '/article/list',
+        name: '文章列表',
+        component: './Article',
       },
     ],
   },
