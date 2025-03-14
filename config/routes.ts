@@ -11,21 +11,17 @@
  * @doc https://umijs.org/docs/guides/routes
  */
 export default [
+  // 登录页作为独立路由
   {
-    path: '/user',
-    layout: false,
-    routes: [
-      {
-        name: 'login',
-        path: '/user/login',
-        component: './User/Login',
-      },
-    ],
+    name: 'login',
+    path: '/user/login',
+    layout: false, // 现在能正确生效
+    component: './User/Login',
   },
   {
     path: '/index',
     name: 'index',
-    icon: 'smile',
+    icon: 'home',
     component: './index',
   },
   {
@@ -35,27 +31,43 @@ export default [
     component: './account',
   },
   {
-    path: '/admin',
-    name: 'admin',
-    icon: 'crown',
-    access: 'canAdmin',
+    path: '/user',
+    icon: 'SolutionOutlined',
+    name: '用户管理',
     routes: [
       {
-        path: '/admin',
-        redirect: '/admin/sub-page',
+        path: '/user',
+        redirect: '/user/list',
       },
       {
-        path: '/admin/sub-page',
-        name: 'sub-page',
-        component: './Admin',
+        path: '/user/list',
+        name: '用户列表',
+        component: './User/List',
+      },
+      {
+        path: ':user',
+        name: '用户详情',
+        component: './User/List/detail',
+        hideInMenu: true,
+      },
+      {
+        path: 'create',
+        name: '用户创建',
+        component: './User/List/create',
+        hideInMenu: true,
+      },
+      {
+        path: ':user/edit',
+        name: '用户更新',
+        component: './User/List/create',
+        hideInMenu: true,
+      },
+      {
+        path: '/user/role',
+        name: '用户权限',
+        component: './User/Role',
       },
     ],
-  },
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
   },
   {
     path: '/',

@@ -77,6 +77,7 @@ export default {
             label: '海纳百川',
           },
         ],
+        profile: '这是我的个人简介你不要在意，我知道对你来说他很有个性.',
         notifyCount: 12,
         unreadCount: 11,
         country: 'China',
